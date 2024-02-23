@@ -1,1 +1,1 @@
-# Repositório da disciplina de PEOO de Infoweb 2024
+# Repositório da disciplina de Programação Estruturada e Orientada a Objetos (PEOO)
