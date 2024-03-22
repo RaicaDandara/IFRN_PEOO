@@ -1,3 +1,10 @@
+# 10. Ler uma data no formato "dd/mm/aaaa" e verificar se é uma data válida, considerando como válidos os anos entre 1900 e 2100, meses de 1 a 12 e dias de acordo com o mês.
+
+# Digite uma data no formato dd/mm/aaaa
+# 32/08/2013
+# A data informada não é válida
+
+
 print("Digite uma data no formato dd/mm/aaaa")
 data = input()
 dia, mes, ano = data.split("/")
