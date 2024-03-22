@@ -16,6 +16,7 @@ ano = int(matri[0:4])
 print("O aluno(a)", nome, "cuja matrícula é", matri, "ingressou no IFRN no ano de", ano)
 
 # ou 
+
 class Aluno:
     def __init__(self): #construtor
         self.nome = ""  #atributo
