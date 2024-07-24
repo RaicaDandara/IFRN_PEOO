@@ -30,6 +30,6 @@ class UI:
         altura = float(input("Digite o valor da altura do retângulo: "))
         x = Retangulo(base, altura)
         print(x)
-        print(f"A área do seu retângulo é: {x.calcArea()} \nA diagonal do seu triângulo é: {x.calcDiagonal()}")
+        print(f"A área do seu retângulo é: {x.calcArea()} \nA diagonal do seu retângulo é: {x.calcDiagonal()}")
 
 UI.main()
