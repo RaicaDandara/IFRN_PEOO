@@ -2,19 +2,19 @@ class Retangulo:
     def __init__(self, b: float, h: float):
         self.__b = b
         self.__h = h
-    def set_base(self, b):
+    def setBase(self, b):
         if b >= 0:
             self.__b = b
         else:
             raise ValueError("O valor da base não pode ser negativo")
-    def get_base(self):
+    def getBase(self):
         return self.__b
-    def set_altura(self, h):
+    def setAltura(self, h):
         if h >= 0:
             self.__h = h
         else:
             raise ValueError("O valor da altura não pode ser negativo")
-    def get_altura(self):
+    def getAltura(self):
         return self.__h
     def calcArea(self):
         return (self.__h * self.__b)
