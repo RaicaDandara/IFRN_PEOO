@@ -1,3 +1,16 @@
+# Escrever a classe Bingo de acordo com o diagrama UML apresentado.
+# A classe é utilizada para realizar um jogo de bingo.
+# O método Iniciar inicia uma partida, definindo o número de bolas do jogo.
+# O método Próximo sorteia uma bola, retornando o seu número (deve ser um valor entre um e o número de bolas ou menos um, caso todas as bolas já tenham sido sorteadas).
+# O método Sorteados retorna uma lista com todas as bolas já sorteadas. Insira outros atributos e métodos nas classes, caso necessário.
+
+# Diagrama:
+# Bingo
+# ----------------
+# -numBolas: int
+# ----------------
+# + numBolas
+
 import random
 class Bingo:
     def __init__(self) -> None:
@@ -21,6 +34,8 @@ class Bingo:
         return n
     def sorteados(self):
         return sorted(self.__sorteados)
+    def __str__(self) -> str:
+        return f"Foram sorteadas {len(self.__sorteados)} do total de {self.__numBolas} bolar"
 
 class UI:
     @staticmethod
@@ -48,5 +63,6 @@ class UI:
     @staticmethod
     def sorteados(b):        
         print(b.sorteados())
+    def
 
 UI.main()
