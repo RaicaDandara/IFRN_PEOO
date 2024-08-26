@@ -47,7 +47,8 @@ O dicionário é responsável por guardar informações através de chaves e val
 >  Você quer guardar as informações sobre as capitais dos estados brasileiros com um dicionário <br> 
     - Então, você cria o seguinte código: <br> 
 > capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> 
-    - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife". <br> 
+    - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife". <br>
+     <br> 
     - Também é possível fazer "perguntas" a ele, como: <br> 
 > print(capitais["RN"]) <br> 
     - Onde ele retornará: <br> 
