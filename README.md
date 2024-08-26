@@ -44,11 +44,11 @@ Utilizando o módulo no python "datetime" podemos trabalhar com datas, horas e i
 ## Dicionários
 ### Conceitos Básicos
 O dicionário é responsável por guardar informações através de chaves e valores. Podendo, portanto, também funcionar como uma grande lista de perguntas e respostas se necessário ou somente como um acervo de informações, dependerá do comando dado a você. Exemplo:
->  Você quer guardar as informações sobre as capitais dos estados brasileiros com um dicionário
-    - Então, você cria o seguinte código:
-> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"}
-    - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife".
-    - Também é possível fazer "perguntas" a ele, como:
-> print(capitais["RN"])
-    - Onde ele retornará:
+>  Você quer guardar as informações sobre as capitais dos estados brasileiros com um dicionário <br> 
+    - Então, você cria o seguinte código: <br> 
+> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> 
+    - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife". <br> 
+    - Também é possível fazer "perguntas" a ele, como: <br> 
+> print(capitais["RN"]) <br> 
+    - Onde ele retornará: <br> 
 > "Natal"
