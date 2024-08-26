@@ -20,12 +20,12 @@ Utilizando o módulo no python "datetime" podemos trabalhar com datas, horas e i
 - date –> representa uma data com informações de ano, mês e dia, ou seja, é como o calendário. Ele te diz a data exata, por exemplo, "1º de junho de 2023" = '2023-06-01'
     - Exemplo em código: <br>
 import datetime
-<br>
 '''# Criando uma data''' <br>
 data_exemplo = datetime.date(2023, 6, 1) <br>
 <br>
 '''# Imprimindo a data'''<br>
 print("Data:", data_exemplo)<br>
+
 > Saída:
 Data: 2023-06-01
         
