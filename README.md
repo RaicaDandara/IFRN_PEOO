@@ -84,3 +84,15 @@ As demais operações que você pode ter ao longo do código relacionadas a dici
 
 - Obter a primeira chave -> através da função "min", é válido lembrar que ela funciona em uma ordem específica, para string, ela procura em ordem alfabética e para números (int, float...) ela procura na ordem numérica e mostra o menor número. Exemplo:
    > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> del capital["RN"] <br> print(min(capital)) <br>  <br> Saída:  <br>  “PB”
+
+### Iterando em um dicionário
+Iterar significa, em termos mais simples, "passar por cada coisa, uma a uma", então quando é dito: "iterar itens da classe tuple", apenas significa passar por uma a um de uma classe onde até mesmo a sua ordem é imutável, portanto tudo dentro dela estaria sempre no mesmo lugar. Por isso é possível iterar separadamente as "chaves"/"keys" de um dicionário e seus "valores"/"values". Com as seguintes operações:
+- 'for item in capital.items()': print(item) -> mostra os itens (chaves e valores juntos) da seguinte maneira:
+> ('RN', 'Natal') <br> ('PB', 'João Pessoa') <br> ('PE', 'Recife')
+
+- 'for key, value in capital.items(): print(key, value)' -> mostra as chaves e valores separados da seguinte maneira:
+> RN Natal <br> PB João Pessoa <br> PE Recife
+
+- 'for key in capital.keys(): print(key)' ou 'for key in capital: print(key)' -> mostra as chaves apenas.
+- for value in capital.values(): print(value) -> mostra os valores apenas.
+> É válido lembrar que o nome dado após o for não importa, apenas o '.item', '.keys' ou '.values' ao final. Portanto, se utilizado: for values in capital: print(values), retornará as chaves e não valores.
