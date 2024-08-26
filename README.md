@@ -38,3 +38,17 @@ Utilizando o módulo no python "datetime" podemos trabalhar com datas, horas e i
  
 ### Operações com datetime e timedelta
 > import datetime  <br> <br> # Data inicial <br> data_inicial = datetime.datetime(2023, 6, 1, 9, 30, 15) <br> <br># Intervalo de tempo <br> intervalo = datetime.timedelta(days=5, hours=3) <br> <br> # Somando intervalo à data inicial <br> nova_data = data_inicial + intervalo <br> <br> # Imprimindo nova data e diferença de tempo  <br> print("Data Inicial:", data_inicial) <br> print("Nova Data (após adicionar intervalo):", nova_data) <br> print("Diferença entre as datas:", nova_data - data_inicial) <br> <br> Saída: <br> Data Inicial: 2023-06-01 09:30:15 <br> Nova Data (após adicionar intervalo): 2023-06-06 12:30:15 <br> Diferença entre as datas: 5 days, 3:00:00
+
+## Enumerções
+## Classes e Heranças
+## Dicionários
+### Conceitos Básicos
+O dicionário é responsável por guardar informações através de chaves e valores. Podendo, portanto, também funcionar como uma grande lista de perguntas e respostas se necessário ou somente como um acervo de informações, dependerá do comando dado a você. Exemplo:
+>  Você quer guardar as informações sobre as capitais dos estados brasileiros com um dicionário
+    - Então, você cria o seguinte código:
+> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"}
+    - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife".
+    - Também é possível fazer "perguntas" a ele, como:
+> print(capitais["RN"])
+    - Onde ele retornará:
+> "Natal"
