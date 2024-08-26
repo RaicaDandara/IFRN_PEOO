@@ -26,6 +26,7 @@ Utilizando o módulo no python "datetime" podemos trabalhar com datas, horas e i
 <br>
         '''# Imprimindo a data'''<br>
         print("Data:", data_exemplo)<br>
+        
 - time –> representa um horário com dados de horas, minutos, segundos e microssegundos, ou seja, é como o relógio. O computador pode te dizer que são "09:30:15", ou seja, 9 horas, 30 minutos e 15 segundos.
 - datetime –> é uma combinação dos tipos date e time. Portanto, este é um jeito de juntar o calendário (data) e o relógio (hora) em uma coisa só. Exemplo: 2023-06-01 09:30:15 significa que é 1º de junho de 2023 às 9 horas, 30 minutos e 15 segundos.
 - timedelta –> intervalo (ou período) de tempo com informações até microssegundos, dessa forma, ele é, obviamente, usado para contar o tempo que passou ou que vai passar.
