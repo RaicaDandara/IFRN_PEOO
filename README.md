@@ -19,12 +19,10 @@
 Utilizando o módulo no python "datetime" podemos trabalhar com datas, horas e intervalos de tempo. Mas primeiro é necessário que ele seja importado no início do código com o comando "import datetime". Dentro dele existem algumas classes disponíveis, como:
 - date –> representa uma data com informações de ano, mês e dia, ou seja, é como o calendário. Ele te diz a data exata, por exemplo, "1º de junho de 2023" = '2023-06-01'
     - Exemplo em código:
-> No código:
-
+> No código: <br>
 data_exemplo = datetime.date(2023, 6, 1) <br>
 
-> Saída:
-
+> Saída: <br>
 Data: 2023-06-01
         
 - time –> representa um horário com dados de horas, minutos, segundos e microssegundos, ou seja, é como o relógio. O computador pode te dizer que são "09:30:15", ou seja, 9 horas, 30 minutos e 15 segundos.
