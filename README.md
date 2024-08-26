@@ -74,7 +74,13 @@ As demais operações que você pode ter ao longo do código relacionadas a dici
 
 - Testar se uma chave está no dicionário -> através da função "in". Exemplos:
    > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print("RN" in capital) <br>  <br> Saída:  <br>  "true"
-   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print("Natal" in capital) <br>  <br> Saída:  <br>  "false" <br>  <br> #Lembre-se: "natal" é um valor associado a chave "RN", não uma chave e o "in" testa CHAVES
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print("Natal" in capital) <br>  <br> Saída:  <br>  "false" <br>  <br> # Lembre-se: "natal" é um valor associado a chave "RN", não uma chave e o "in" testa CHAVES
 
 - Remover elementos do dicionário -> através da instrução "del". Exemplo:
    > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> del capital["RN"] <br> print(capital) <br>  <br> Saída:  <br>  "{'PB':'João Pessoa', 'PE':'Recife'}"
+
+- Obter a última chave -> através da função "max", é válido lembrar que ela funciona em uma ordem específica, para string, ela procura em ordem alfabética e para números (int, float...) ela procura na ordem numérica e mostra o maior número. Exemplo:
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> del capital["RN"] <br> print(max(capital)) <br>  <br> Saída:  <br>  "RN"
+
+- Obter a primeira chave -> através da função "min", é válido lembrar que ela funciona em uma ordem específica, para string, ela procura em ordem alfabética e para números (int, float...) ela procura na ordem numérica e mostra o menor número. Exemplo:
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> del capital["RN"] <br> print(min(capital)) <br>  <br> Saída:  <br>  “PB”
