@@ -50,6 +50,31 @@ O dicionário é responsável por guardar informações através de chaves e val
     - Portanto, nele as chaves são: "RN", "PB" e "PE". Enquanto os valores são: "Natal", "João Pessoa" e "Recife". <br>
      <br> 
     - Também é possível fazer "perguntas" a ele, como: <br> 
-> print(capitais["RN"]) <br> 
+> print(capital["RN"]) <br> 
     - Onde ele retornará: <br> 
 > "Natal"
+
+### CRUD e Operações
+O CRUD se refere as operações que um dicionário deve ser capaz de realizar na maioria dos casos.
+- C -> CREATE - adicionar uma chave com valores ao dicionário, porque ele não possuí um tamanho máximo e sim dinâmico, ou seja, ele se adapta conforme são inseridos ou removidos os itens.
+    - PARA ISSO BASTA - seguindo o exemplo acima - DIGITAR NO CÓDIGO: <br> capital["AM"] = "Manaus"
+- R -> READ - ler as informações, sejam as novas ou anteriores, porque ele precisará delas para realizar as demais operações e garantir que não hajam duas chaves iguais para informações diferentes, atualizar dados antigos ou deletar aqueles que não são mais necessários.
+- U -> UPDATE - atualizar as informações antigas, portanto ele deve tê-las lido e dar ao usuário a opção de alterar as já preenchidas ou adicionar ainda mais.
+    - PARA ISSO BASTA - seguindo o exemplo acima - DIGITAR NO CÓDIGO: <br> capital["PB"] = "J. Pessoa"
+- D -> DELETE - deletar, excluir uma chave com valores ao dicionário, porque ele não possuí um tamanho máximo e sim dinâmico, ou seja, ele se adapta conforme são inseridos ou removidos os itens.
+As demais operações que você pode ter ao longo do código relacionadas a dicionários são inúmeras, contudo as mais utilizadas são:
+- Exibir os itens (chaves e valores) do dicionário -> através da função "print". Exemplo:
+  > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print(capital) <br>  <br> Saída:  <br>  "{'RN':'Natal', 'PB':'João Pessoa', 'PE':'Recife'}"
+  
+- Exibir apenas as chaves do dicionário -> através da função "print(*dicionario)". Exemplo:
+  > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print(*capital) <br>  <br> Saída:  <br>  "RN PB PE"
+  
+- Obtenção do número de elementos -> através da função "Len". Exemplo:
+  > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print(len(capital)) <br>  <br> Saída:  <br>  "3"
+
+- Testar se uma chave está no dicionário -> através da função "in". Exemplos:
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print("RN" in capital) <br>  <br> Saída:  <br>  "true"
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> print("Natal" in capital) <br>  <br> Saída:  <br>  "false" <br>  <br> #Lembre-se: "natal" é um valor associado a chave "RN", não uma chave e o "in" testa CHAVES
+
+- Remover elementos do dicionário -> através da instrução "del". Exemplo:
+   > No código: <br> capital = {"RN": "Natal", "PB": "João Pessoa", "PE": "Recife"} <br> del capital["RN"] <br> print(capital) <br>  <br> Saída:  <br>  "{'PB':'João Pessoa', 'PE':'Recife'}"
