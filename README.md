@@ -96,3 +96,16 @@ Iterar significa, em termos mais simples, "passar por cada coisa, uma a uma", en
 - 'for key in capital.keys(): print(key)' ou 'for key in capital: print(key)' -> mostra as chaves apenas.
 - for value in capital.values(): print(value) -> mostra os valores apenas.
 > É válido lembrar que o nome dado após o for não importa, apenas o '.item', '.keys' ou '.values' ao final. Portanto, se utilizado: for values in capital: print(values), retornará as chaves e não valores.
+
+### Copy e Vars
+Em resumo o método "copy" irá copiar o seu dicionário da seguinte forma:
+> x = { "RN" : "Natal"} <br> y = x.copy() <br> z = { "PB" : "João Pessoa", "PE" : "Recife"}  <br> <br> y.update(z) <br> print(x) # {'RN':'Natal'} <br> print(y) # {'RN':'Natal', 'PB':'João Pessoa', 'PE':'Recife'} <br> print(z) # {'PB':'João Pessoa', 'PE':'Recife'}
+
+Já o Vars, caso usado sem argumentos, entre em um loop infinito, mas com argumentos ele irá retornar os atributos. Exemplo com dicionário:
+> class Cliente: <br> def __init__(self, id, nome): <br> self.id = id <br> self.nome = nome <br> def __str__(self): <br> return f"{self.id} - {self.nome}"  <br>  <br> a = Cliente(1, "Douglas Crockford") <br> b = Cliente(2, "Jon Bosak") <br>  <br> print(a.__dict__) # {'id': 1, 'nome': 'Douglas Crockford’} <br> print(vars(a)) # {'id': 1, 'nome': 'Douglas Crockford’} <br> print(b.__dict__) # {'id': 2, 'nome': 'Jon Bosak’} <br> print(vars(b)) # {'id': 2, 'nome': 'Jon Bosak'}
+
+Exemplos sem dicionários:
+- Sem argumentos
+> a = 10 <br> b = "Olá" <br> print(vars()) #{'a': 10, 'b': 'Olá', ...}
+- Com argumentos
+> class Pessoa:  <br> def __init__(self, nome, idade): <br> self.nome = nome  <br> self.idade = idade  <br>  <br> p = Pessoa("Alice", 30)  <br> print(vars(p)) #{'nome': 'Alice', 'idade': 30}
