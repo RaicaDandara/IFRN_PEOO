@@ -1,28 +1,38 @@
+# Explicação Básica:
 # CRUD de NPaciente - cadastro de NPaciente - lista
 # C - Create - insere um Paciente no cadastro
 # R - Read - lê os NPaciente cadastrados
 # U - Update - atualiza os dados de um Paciente
 # D - Delete - remove um Paciente do cadastro
+
+
+# Em caso de fazer a parte das classes de Paciente e NPacientes separados, lembre-se de:
+# from [nome do arquivo, sem o '.py'] import [nome da classe modelo], [nome da classe de lista]
+# Exemplo:
 from datetime import datetime, date
 # vamos precisar desses dois para a data de nascimento e operações extras
+import re
+# Vou primeiramente utilizar expressão regular para filtrar o e-mail, mas também mostrarei uma forma sem ela
 import json
 # vamos precisar dele para criar o banco de dados
 
 # Modelo
 class Paciente:
-  def __init__(self, id: int, nome: str, fone: int, nasc: date):
+  def __init__(self, id: int, nome: str, email: str, fone: int, nasc: date):
     # Privando os atributos do código com "__", portanto não poderão ser acessados diretamente
     self.__id = 0
     self.__nome = "nome"
+    self.__email = "teste@gmail.com"
     self.__fone = 0
     self.__nasc = None
     self.set_id(id)
     self.set_nome(nome)
+    self.set_email(email)
     self.set_fone(fone)
     self.set_nasc(nasc)
   def set_id(self, id: int):
-    # Setando o id e garantindo que além de inteiro ele seja maior do que 0.
-    if id > 0:
+    # Setando o id e garantindo que além de inteiro ele seja maior do que -1.
+    if id > -1:
       self.__id = id
     else:
       raise ValueError("ID inválido, tente novamente")
@@ -85,19 +95,43 @@ class Paciente:
     #     cando se é ou não um ano bissexto para ter 29 dias, caso contrário o erro não cairia da forma de desejamos
   def get_nasc(self):
     return self.__nasc
+  def set_email(self, e: str):
+     # Expressão regular para validar e-mail
+
+        # não precisa necessariamente ter o nome "pattern", mas é uma convenção. Porém, se preferir troque por "padrão"
+        pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        #    - '^' mostra o começo da string que será verificada com expressão regular
+        #    - '[a-zA-Z0-9._%+-]+' indica que quais caracteres desses grupos podem estar antes do @.
+        #                          OBS: os grupos são: letras maúsculas e minúsculas, números e os caracteres especiais
+        #                               definidos
+        #    - '@[a-zA-Z0-9.-]+' indica que depois do @ quais caracteres você pode usar deixando os grupos anteriores exce-
+        #       to os especiais.
+        #    - '\.[a-zA-Z] indica que depois da expressão @(alguma coisa) tem que viz o .(alguma coisa) limitando o tipo 
+        #       de caracteres somente a letras maiúsculas e minúsculas
+        #    - '{2,}' o mínimo de caracteres é 3 (eu coloquei 3, pq o menor e-mail q você poderia registrar, na minha 
+        #       cabeça, seria: [letra]@gmail.com) e o "com" só tem 3 letras
+        #    -  '$' indica o fim da expressão regular
+        if re.match(pattern, e):
+            # verifica se o e-mail digitado segue o padrão definido no pattern
+            self.__email = e
+        else:
+            raise ValueError("E-mail inválido. Digite um e-mail válido.")
+  def get_email(self):
+     return self.__email
   def to_json(self):
         dic = {}                                          # Cria um dicionário vazio
         dic["id"] = self.__id                             # Adiciona o atributo 'id' ao dicionário
         dic["nome"] = self.__nome                         # Adiciona o atributo 'nome' ao dicionário
         # Lembrando que ele estava como date para poder ser feita a comparação de ser anterior ao dia atual lá em cima
-        dic["nasc"] = self.__nasc.strftime('%d/%m/%Y')    # Converte a data de nascimento para string e adiciona ao dicionário
+        dic["email"] = self.__email                      # Adiciona o atributo 'email' ao dicionário
         dic["fone"] = self.__fone                         # Adiciona o atributo 'fone' ao dicionário
-
+        dic["nasc"] = self.__nasc.strftime('%d/%m/%Y')    # Converte a data de nascimento para string e adiciona ao dicionário
+        
         return dic                                        # Retorna o dicionário
         # É válido lembrar que as chaves desse dicionário são os nomes dentro do colchete ao lado de dic e os valores os
         # respectivos "self.__" encapsulados
   def __str__(self):
-    return f"{self.get_id()} - {self.get_nome()} - {self.get_fone()} - {self.__nasc.strftime('%d/%m/%Y')} "
+    return f"{self.get_id()} - {self.get_nome()} - {self.get_email()} - {self.get_fone()} - {self.__nasc.strftime('%d/%m/%Y')} "
     # É o que vai aparecer no listar para o usuário, deixe essa parte tão bonita quando preferir
 
 # Classe de Persistência de Objetos
@@ -162,6 +196,7 @@ class NPaciente:
         # Se realmente houver um paciente com esse id ele excuta a função abaixo, já que na função de cima se ele não
         # encontrar nada, ele fica "sem retorno", por falta de um termo melhor
         c.set_nome(obj.get_nome())
+        c.set_email(obj.get_email())
         c.set_fone(obj.get_fone())
         c.set_nasc(obj.get_nasc().strftime('%d/%m/%Y')) #convertendo para string novamente para então salvar sem erros
     cls.salvar()
@@ -193,7 +228,7 @@ class NPaciente:
         # lê o conteúdo do arquivo JSON e converte em um objeto python com o "json.load"
         for obj in texto:
           # Percorre cada itém que a gente transformou em objeto python, lembrando que cada um é um dicionário do paciente
-          c = Paciente(obj["id"], obj["nome"], obj["fone"], obj["nasc"])
+          c = Paciente(obj["id"], obj["nome"], obj["email"], obj["fone"], obj["nasc"])
           cls.objetos.append(c)                     # dicionário
           # Basicamente nas duas linhas de cima ele vai pegar o dicionário, transformar em algo que possa ser adicionado
           # na lsita criada lá no início para poder excutar as operações que o usuário quiser
@@ -281,7 +316,8 @@ class UI:
     nome = input("Informe o nome: ")
     nasc = input("Informe a sua data de nascimento (dd/mm/aaaa): ")
     fone = int(input("Informe o fone: "))
-    c = Paciente(0, nome, fone, nasc)
+    email = input("Informe um e-mail para contato: ")
+    c = Paciente(0, nome, email, fone, nasc)
     # Passe pela verificação da primeira classe, se estão todos corretamente setados e retorna da forma correta
     NPaciente.inserir(c)
     # Apena insere a objeto inteiro na classe de lista dos pacientes "NPaciente"
@@ -303,7 +339,8 @@ class UI:
     nome = input("Informe o nome: ")
     nasc = input("Informe a sua data de nascimento (dd/mm/aaaa): ")  # Mudança aqui
     fone = int(input("Informe o fone: "))
-    c = Paciente(id, nome, fone, nasc)
+    email = input("Informe um e-mail para contato: ")
+    c = Paciente(id, nome, email, fone, nasc)
     # Passa as novas informações pela classe modelo para ver se tudo está de acordo
     # Percebeu que o id não é 0 agora? Pois é, porque precisamos buscar com um com o id que o usuário vai fornecer, então
     # se colocarmos como 0 autormaticamente ele não vai funcionar graças ao filtro do encapsulamente e segundo que ele 
