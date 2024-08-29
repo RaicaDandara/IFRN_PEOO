@@ -1,4 +1,4 @@
-# Falta o tempo total e a duração
+# Falta o tempo total, a duração e encapsulamento
 
 class Musica:
     def __init__(self):
