@@ -107,10 +107,11 @@ class NPaciente:
   def abrir(cls):
     cls.objetos = []
     try: 
-        texto = json.load(arquivo)
-        for obj in texto:
-          c = Paciente(obj["id"], obj["nome"], obj["email"], obj["fone"], obj["nasc"])
-          cls.objetos.append(c)                     
+        with open("NPaciente.json", mode = "r" ) as arquivo:
+          texto = json.load(arquivo)
+          for obj in texto:
+            c = Paciente(obj["id"], obj["nome"], obj["email"], obj["fone"], obj["nasc"])
+            cls.objetos.append(c)                     
     except FileNotFoundError:
       pass
   @classmethod
