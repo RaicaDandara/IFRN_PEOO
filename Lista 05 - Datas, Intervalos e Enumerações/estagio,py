@@ -1,1 +1,156 @@
 
+from enum import Enum
+
+class Dias(Enum):
+    SEGUNDA = "Segunda"
+    TERCA = "Terça"
+    QUARTA = "Quarta"
+    QUINTA = "Quinta"
+    SEXTA = "Sexta"
+    SABADO = "Sábado"
+    DOMINGO = "Domingo"
+
+class Turno(Enum):
+    MANHA = "Manhã"
+    TARDE = "Tarde"
+    NOITE = "Noite"
+
+class Estagiario:
+    def __init__(self, nome, cpf, telefone):
+        self.__nome = nome
+        self.__cpf = cpf
+        self.__telefone = telefone
+        self.__dias_disponiveis = []
+        self.__turno = None
+    
+    def get_nome(self):
+        return self.__nome
+    
+    def set_nome(self, nome):
+        self.__nome = nome
+    
+    def get_cpf(self):
+        return self.__cpf
+    
+    def set_cpf(self, cpf):
+        self.__cpf = cpf
+    
+    def get_telefone(self):
+        return self.__telefone
+    
+    def set_telefone(self, telefone):
+        self.__telefone = telefone
+    
+    def get_dias_disponiveis(self):
+        return [dia.value for dia in self.__dias_disponiveis]
+    
+    def set_dias_disponiveis(self, dias):
+        try:
+            novos_dias = [Dias[dia.upper()] for dia in dias]
+            self.__dias_disponiveis = novos_dias
+        except KeyError as e:
+            print(f"Dia inválido: {e}")
+    def get_turno(self):
+        return self.__turno.value if self.__turno else None
+    
+    def set_turno(self, turno):
+        turno = turno.upper().replace("Ã", "A")  # Normaliza a entrada do usuário
+        self.__turno = Turno[turno]
+    
+    def __str__(self):
+        return f"Estagiário: {self.__nome}, CPF: {self.__cpf}, Telefone: {self.__telefone}, Dias Disponíveis: {self.get_dias_disponiveis()}, Turno: {self.get_turno()}"
+
+class UI:
+    __estagiarios = []
+
+    @staticmethod
+    def criar_estagiario():
+        nome = input("Digite o nome do estagiário: ")
+        cpf = input("Digite o CPF do estagiário: ")
+        telefone = input("Digite o telefone do estagiário: ")
+        
+        novo_estagiario = Estagiario(nome, cpf, telefone)
+        UI.__estagiarios.append(novo_estagiario)
+        print("Estagiário criado com sucesso!")
+
+    @staticmethod
+    def listar_estagiarios():
+        if UI.__estagiarios:
+            for estagiario in UI.__estagiarios:
+                print(estagiario)
+        else:
+            print("Nenhum estagiário encontrado.")
+
+    @staticmethod
+    def buscar_estagiario(cpf):
+        for estagiario in UI.__estagiarios:
+            if estagiario.get_cpf() == cpf:
+                return estagiario
+        return None
+
+    @staticmethod
+    def definir_dias():
+        cpf = input("Digite o CPF do estagiário para definir os dias disponíveis: ")
+        estagiario = UI.buscar_estagiario(cpf)
+        if estagiario:
+            dias = input("Digite os dias disponíveis (separados por vírgula): ").split(',')
+            estagiario.set_dias_disponiveis([dia.strip() for dia in dias])
+            print("Dias disponíveis definidos com sucesso!")
+        else:
+            print("Estagiário não encontrado.")
+
+    @staticmethod
+    def definir_turno():
+        cpf = input("Digite o CPF do estagiário para definir o turno: ")
+        estagiario = UI.buscar_estagiario(cpf)
+        if estagiario:
+            turno = input("Digite o turno (manhã, tarde, noite): ").strip()
+            try:
+                estagiario.set_turno(turno)
+                print("Turno definido com sucesso!")
+            except KeyError:
+                print("Turno inválido. Use: manhã, tarde ou noite.")
+        else:
+            print("Estagiário não encontrado.")
+
+    @staticmethod
+    def exibir_estagiario():
+        cpf = input("Digite o CPF do estagiário que deseja exibir: ")
+        estagiario = UI.buscar_estagiario(cpf)
+        if estagiario:
+            print(estagiario)
+        else:
+            print("Estagiário não encontrado.")
+
+    @staticmethod
+    def menu():
+        print("\n===== Sistema de Gerenciamento de Estagiários =====")
+        print("1. Criar novo estagiário")
+        print("2. Definir dias disponíveis")
+        print("3. Definir turno")
+        print("4. Listar todos os estagiários")
+        print("5. Exibir detalhes de um estagiário")
+        print("6. Sair")
+        return int(input("Selecione uma opção: "))
+
+    @staticmethod
+    def main():
+        op = -1
+        while op != 6:
+            op = UI.menu()
+            if op == 1:
+                UI.criar_estagiario()
+            elif op == 2:
+                UI.definir_dias()
+            elif op == 3:
+                UI.definir_turno()
+            elif op == 4:
+                UI.listar_estagiarios()
+            elif op == 5:
+                UI.exibir_estagiario()
+            elif op != 6:
+                print("Opção inválida. Tente novamente.")
+        print("Saindo do sistema. Até logo!")
+
+# Executa o sistema
+UI.main()
