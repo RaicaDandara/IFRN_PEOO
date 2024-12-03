@@ -27,12 +27,10 @@ class ListarHorarioUI:
             elif tipo_usuario == 'profissional':
                 # Profissional visualiza apenas os seus horários
                 id_profissional = st.session_state.get("id_profissional")  # ID do profissional, armazenada na sessão
+# se não funcionar tente: id_profissional = st.session_state.get("id")
                 # Filtra os horários pelo ID do profissional
                 df_profissional = df[df['id_profissional'] == id_profissional]  # Filtra a tabela com base no ID
                 if df_profissional.empty:
                     st.write(f"Nenhum horário agendado para o profissional {id_profissional}")
                 else:
                     st.dataframe(df_profissional)
-            elif tipo_usuario == 'admin':
-                # Administrador pode ver todos os horários
-                st.dataframe(df)
